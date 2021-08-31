@@ -5,6 +5,9 @@ import "fmt"
 var a = [8]int{5, 2, 4, 7, 1, 3, 2, 6}
 
 func merge(start int, mid int, end int) {
+	// 在sort函数中, 数组被分为[start, mid]和[mid+1, end]两个部分,
+	// n1为left的length, 长度mid-start +1
+	// n2为right的length, 长度为end-mid
 	n1, n2 := mid-start+1, end-mid
 	left, right := make([]int, n1), make([]int, n2)
 
@@ -15,7 +18,8 @@ func merge(start int, mid int, end int) {
 		right[i] = a[mid+1+i]
 	}
 
-	var i, j, k = 0, 0, start
+	// i为left下标, j为right下标, k为原数组下标
+	i, j, k := 0, 0, start
 	for i < n1 && j < n2 {
 		if left[i] < right[j] {
 			a[k] = left[i]
